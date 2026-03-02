@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latticio — AI-Powered Multi-Vendor Network Automation</title>
+  <meta name="description" content="Open-source MCP server with 261 tools for Arista EOS, Cisco IOS-XE, Cisco NX-OS, and Juniper JunOS. Let AI assistants manage your network through natural language.">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Latticio — AI-Powered Network Automation">
+  <meta property="og:description" content="261 MCP tools for Arista, Cisco, and Juniper. Open source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://latticio.com">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Latticio — AI-Powered Network Automation">
+  <meta name="twitter:description" content="261 MCP tools for Arista, Cisco, and Juniper. Open source.">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #222;
+      --text: #e5e5e5;
+      --text-muted: #888;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --green: #22c55e;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --mono: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-hover); }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--text-muted); font-size: 0.9rem; }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-btn {
+      background: var(--accent);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: var(--accent-hover); color: #fff; }
+
+    /* Hero */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+
+    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: #444; color: #fff; transform: translateY(-1px); }
+
+    /* Install block */
+    .install-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 24px;
+      max-width: 440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .install-block code {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      color: var(--green);
+    }
+
+    .copy-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: var(--font);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .copy-btn:hover { border-color: #444; color: var(--text); }
+
+    /* Vendors */
+    .vendors {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 24px 60px;
+    }
+
+    .vendor {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vendor-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      max-width: 700px;
+      margin: 0 auto 80px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* How it works */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .section > p {
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Flow diagram */
+    .flow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      line-height: 1.8;
+      overflow-x: auto;
+      color: var(--text-muted);
+    }
+
+    .flow .highlight { color: var(--accent); }
+    .flow .green { color: var(--green); }
+
+    /* Features grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+
+    .feature:hover { border-color: #333; }
+
+    .feature h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Clients */
+    .clients {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .client {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 80px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-size: 1.05rem;
+    }
+
+    .cta-install {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 32px;
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-install code {
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--green);
+    }
+
+    .cta-install .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a { color: var(--text-muted); font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero { padding-top: 110px; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; justify-content: center; }
+      .install-block { flex-direction: column; text-align: center; }
+      .nav-links { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Latticio</div>
+    <div class="nav-links">
+      <a href="https://github.com/latticio/network-mcp/blob/main/docs/TOOLS.md">Docs</a>
+      <a href="https://github.com/latticio/network-mcp/discussions">Community</a>
+      <a href="https://github.com/latticio/network-mcp" class="nav-btn">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>AI-powered <span>network automation</span> for every vendor</h1>
+  <p>261 MCP tools give AI assistants structured access to Arista EOS, Cisco IOS-XE, Cisco NX-OS, and Juniper JunOS. Ask questions in natural language. Get answers in seconds.</p>
+
+  <div class="hero-buttons">
+    <a href="https://github.com/latticio/network-mcp" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      View on GitHub
+    </a>
+    <a href="https://github.com/latticio/network-mcp/blob/main/docs/GETTING_STARTED.md" class="btn btn-secondary">Get Started</a>
+  </div>
+
+  <div class="install-block">
+    <code id="install-cmd">pip install latticio</code>
+    <button class="copy-btn" onclick="copyInstall()">Copy</button>
+  </div>
+</section>
+
+<!-- Vendors -->
+<div class="vendors">
+  <div class="vendor"><div class="vendor-dot"></div> Arista EOS</div>
+  <div class="vendor"><div class="vendor-dot"></div> Cisco IOS-XE</div>
+  <div class="vendor"><div class="vendor-dot"></div> Cisco NX-OS</div>
+  <div class="vendor"><div class="vendor-dot"></div> Juniper JunOS</div>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">261</div><div class="stat-label">MCP Tools</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Vendors</div></div>
+  <div class="stat"><div class="stat-num">8,422</div><div class="stat-label">Tests</div></div>
+  <div class="stat"><div class="stat-num">92%+</div><div class="stat-label">Coverage</div></div>
+</div>
+
+<!-- How it works -->
+<section class="section">
+  <h2>How it works</h2>
+  <p>You ask a question. The AI picks the right tools, queries your devices, and explains what it found.</p>
+
+  <div class="flow">
+    <span class="highlight">You:</span> "Are any BGP neighbors down on spine-01?"<br>
+    &nbsp;&nbsp;|<br>
+    <span class="highlight">AI Assistant</span> (Claude, Cursor, VS Code Copilot)<br>
+    &nbsp;&nbsp;|&nbsp;&nbsp;selects: <span class="green">net_get_bgp_summary</span>(host="spine-01")<br>
+    &nbsp;&nbsp;v<br>
+    <span class="highlight">Latticio</span> &rarr; eAPI / RESTCONF / NX-API / NETCONF<br>
+    &nbsp;&nbsp;|&nbsp;&nbsp;validates, rate-limits, audits, returns structured JSON<br>
+    &nbsp;&nbsp;v<br>
+    <span class="highlight">AI:</span> "All 4 BGP neighbors on spine-01 are <span class="green">Established</span>.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total prefixes received: 612."
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section">
+  <h2>Built for production</h2>
+  <p>Enterprise-grade safety, observability, and multi-tenancy from day one.</p>
+
+  <div class="features">
+    <div class="feature">
+      <h3>Read-only by default</h3>
+      <p>All write operations are blocked unless you explicitly opt in. Dangerous commands like reload, write erase, and bash are permanently denied.</p>
+    </div>
+    <div class="feature">
+      <h3>Multi-vendor normalization</h3>
+      <p>70 vendor-agnostic net_* tools return the same schema regardless of whether the device runs EOS, IOS-XE, NX-OS, or JunOS.</p>
+    </div>
+    <div class="feature">
+      <h3>CLI injection prevention</h3>
+      <p>Every parameter is validated against injection patterns &mdash; semicolons, pipes, backticks, subshell syntax, null bytes &mdash; before reaching any device.</p>
+    </div>
+    <div class="feature">
+      <h3>Config sessions &amp; rollback</h3>
+      <p>Stage changes in atomic config sessions. Review diffs before committing. Set rollback timers for automatic revert if anything goes wrong.</p>
+    </div>
+    <div class="feature">
+      <h3>RBAC &amp; OAuth 2.1</h3>
+      <p>Scope-based access control with network:read, network:write, and network:admin. JWT/mTLS authentication for HTTP transport deployments.</p>
+    </div>
+    <div class="feature">
+      <h3>Observability</h3>
+      <p>Full audit logging with tenant attribution, OpenTelemetry distributed tracing, Prometheus metrics export, and per-device circuit breakers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Works with -->
+<section class="section">
+  <h2>Works with any MCP client</h2>
+  <p>Connect Latticio to the AI tools you already use.</p>
+  <div class="clients">
+    <div class="client">Claude Desktop</div>
+    <div class="client">Claude Code</div>
+    <div class="client">Cursor</div>
+    <div class="client">VS Code Copilot</div>
+    <div class="client">Any MCP client</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Try it in 30 seconds</h2>
+  <p>Demo mode works with zero hardware. No devices, no lab, no configuration.</p>
+
+  <div class="cta-install">
+    <div class="label">Demo mode</div>
+    <code>NET_DEMO_MODE=true uvx latticio</code>
+  </div>
+
+  <div class="hero-buttons">
+    <a href="https://github.com/latticio/network-mcp" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Star on GitHub
+    </a>
+    <a href="https://discord.gg/TUBXHNnb" class="btn btn-secondary">Join Discord</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/latticio/network-mcp">GitHub</a>
+    <a href="https://github.com/latticio/network-mcp/blob/main/docs/TOOLS.md">Tool Reference</a>
+    <a href="https://github.com/latticio/network-mcp/blob/main/docs/GETTING_STARTED.md">Getting Started</a>
+    <a href="https://github.com/latticio/network-mcp/blob/main/docs/ARCHITECTURE.md">Architecture</a>
+    <a href="https://github.com/latticio/network-mcp/discussions">Discussions</a>
+    <a href="https://discord.gg/TUBXHNnb">Discord</a>
+    <a href="https://pypi.org/project/latticio/">PyPI</a>
+  </div>
+  <div class="footer-copy">Apache 2.0 &mdash; Latticio Labs</div>
+</footer>
+
+<script>
+function copyInstall() {
+  navigator.clipboard.writeText('pip install latticio').then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+</script>
+
+</body>
+</html>
