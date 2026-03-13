@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Latticio — AI-Powered Multi-Vendor Network Automation</title>
-  <meta name="description" content="Open-source MCP server with 261 tools for Arista EOS, Cisco IOS-XE, Cisco NX-OS, and Juniper JunOS. Let AI assistants manage your network through natural language.">
+  <title>Latticio — AI-Native Network Automation</title>
+  <meta name="description" content="Open-source MCP server with 334 tools for Arista EOS, Cisco IOS-XE, Cisco NX-OS, Juniper JunOS, SONiC, Palo Alto PAN-OS, and Fortinet FortiOS. Let AI assistants manage your network through natural language.">
   <meta name="theme-color" content="#0a0a0a">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Latticio — AI-Powered Network Automation">
-  <meta property="og:description" content="261 MCP tools for Arista, Cisco, and Juniper. Open source.">
+  <meta property="og:title" content="Latticio — AI-Native Network Automation">
+  <meta property="og:description" content="334 MCP tools across 7 vendor platforms. Give AI assistants structured access to your network infrastructure. Open source.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://latticio.com">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Latticio — AI-Powered Network Automation">
-  <meta name="twitter:description" content="261 MCP tools for Arista, Cisco, and Juniper. Open source.">
+  <meta name="twitter:title" content="Latticio — AI-Native Network Automation">
+  <meta name="twitter:description" content="334 MCP tools across 7 vendor platforms. Give AI assistants structured access to your network infrastructure. Open source.">
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,12 +24,15 @@
     :root {
       --bg: #0a0a0a;
       --surface: #141414;
+      --surface-hover: #1a1a1a;
       --border: #222;
+      --border-hover: #333;
       --text: #e5e5e5;
       --text-muted: #888;
       --accent: #3b82f6;
       --accent-hover: #60a5fa;
       --green: #22c55e;
+      --amber: #f59e0b;
       --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --mono: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
     }
@@ -81,14 +84,14 @@
 
     .nav-btn {
       background: var(--accent);
-      color: #fff;
+      color: #fff !important;
       padding: 6px 16px;
       border-radius: 6px;
       font-size: 0.85rem;
       font-weight: 500;
       transition: background 0.2s;
     }
-    .nav-btn:hover { background: var(--accent-hover); color: #fff; }
+    .nav-btn:hover { background: var(--accent-hover); color: #fff !important; }
 
     /* Hero */
     .hero {
@@ -111,8 +114,9 @@
     .hero p {
       font-size: 1.15rem;
       color: var(--text-muted);
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto 32px;
+      line-height: 1.7;
     }
 
     .hero-buttons {
@@ -177,14 +181,14 @@
     /* Vendors */
     .vendors {
       display: flex;
-      gap: 32px;
+      gap: 24px;
       justify-content: center;
       flex-wrap: wrap;
       padding: 0 24px 60px;
     }
 
     .vendor {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
       display: flex;
       align-items: center;
@@ -195,16 +199,18 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--accent);
     }
+    .vendor-dot.green { background: var(--green); }
+    .vendor-dot.amber { background: var(--amber); }
+    .vendor-dot.blue { background: var(--accent); }
 
     /* Stats */
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 1px;
       background: var(--border);
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto 80px;
       border-radius: 12px;
       overflow: hidden;
@@ -212,7 +218,7 @@
 
     .stat {
       background: var(--surface);
-      padding: 24px;
+      padding: 24px 16px;
       text-align: center;
     }
 
@@ -224,16 +230,16 @@
     }
 
     .stat-label {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
       margin-top: 4px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    /* How it works */
+    /* Sections */
     .section {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 0 24px 80px;
     }
@@ -286,7 +292,7 @@
       transition: border-color 0.2s;
     }
 
-    .feature:hover { border-color: #333; }
+    .feature:hover { border-color: var(--border-hover); }
 
     .feature h3 {
       font-size: 1rem;
@@ -298,6 +304,63 @@
       font-size: 0.88rem;
       color: var(--text-muted);
       line-height: 1.5;
+    }
+
+    /* Tool categories */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .tool-cat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      transition: border-color 0.2s;
+    }
+
+    .tool-cat:hover { border-color: var(--border-hover); }
+
+    .tool-cat-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .tool-cat-count {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Integration grid */
+    .int-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .int-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      transition: border-color 0.2s;
+    }
+
+    .int-item:hover { border-color: var(--border-hover); }
+
+    .int-item-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .int-item-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
     }
 
     /* Clients */
@@ -315,6 +378,46 @@
       padding: 12px 20px;
       font-size: 0.9rem;
       color: var(--text-muted);
+      transition: border-color 0.2s;
+    }
+
+    .client:hover { border-color: var(--border-hover); }
+
+    /* Vendor table */
+    .vendor-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .vendor-table th {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .vendor-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .vendor-table tr:last-child td { border-bottom: none; }
+
+    .vendor-table .status-supported { color: var(--green); }
+    .vendor-table .status-preview { color: var(--amber); }
+    .vendor-table .status-experimental { color: var(--text-muted); }
+
+    .vendor-table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
     /* CTA */
@@ -390,6 +493,8 @@
       .btn { width: 100%; max-width: 280px; justify-content: center; }
       .install-block { flex-direction: column; text-align: center; }
       .nav-links { gap: 16px; }
+      .vendors { gap: 16px; }
+      .tool-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
     }
   </style>
 </head>
@@ -398,10 +503,10 @@
 <!-- Nav -->
 <nav>
   <div class="nav-inner">
-    <div class="logo">Latticio</div>
+    <div class="logo">latticio</div>
     <div class="nav-links">
-      <a href="https://github.com/latticio/network-mcp/blob/main/docs/TOOLS.md">Docs</a>
-      <a href="https://github.com/latticio/network-mcp/discussions">Community</a>
+      <a href="https://github.com/latticio/network-mcp/blob/main/docs/GETTING_STARTED.md">Docs</a>
+      <a href="https://github.com/latticio/network-mcp/blob/main/docs/TOOLS.md">Tools</a>
       <a href="https://github.com/latticio/network-mcp" class="nav-btn">GitHub</a>
     </div>
   </div>
@@ -409,15 +514,15 @@
 
 <!-- Hero -->
 <section class="hero">
-  <h1>AI-powered <span>network automation</span> for every vendor</h1>
-  <p>261 MCP tools give AI assistants structured access to Arista EOS, Cisco IOS-XE, Cisco NX-OS, and Juniper JunOS. Ask questions in natural language. Get answers in seconds.</p>
+  <h1>Give your AI assistant access to <span>every device on your network</span></h1>
+  <p>latticio is an open-source MCP server that connects Claude, Cursor, and VS Code to your network infrastructure. 334 tools across 7 vendor platforms. Query, diagnose, and configure through natural language.</p>
 
   <div class="hero-buttons">
-    <a href="https://github.com/latticio/network-mcp" class="btn btn-primary">
+    <a href="https://github.com/latticio/network-mcp/blob/main/docs/GETTING_STARTED.md" class="btn btn-primary">Get Started</a>
+    <a href="https://github.com/latticio/network-mcp" class="btn btn-secondary">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       View on GitHub
     </a>
-    <a href="https://github.com/latticio/network-mcp/blob/main/docs/GETTING_STARTED.md" class="btn btn-secondary">Get Started</a>
   </div>
 
   <div class="install-block">
@@ -428,76 +533,160 @@
 
 <!-- Vendors -->
 <div class="vendors">
-  <div class="vendor"><div class="vendor-dot"></div> Arista EOS</div>
-  <div class="vendor"><div class="vendor-dot"></div> Cisco IOS-XE</div>
-  <div class="vendor"><div class="vendor-dot"></div> Cisco NX-OS</div>
-  <div class="vendor"><div class="vendor-dot"></div> Juniper JunOS</div>
+  <div class="vendor"><div class="vendor-dot green"></div> Arista EOS</div>
+  <div class="vendor"><div class="vendor-dot amber"></div> Cisco IOS-XE</div>
+  <div class="vendor"><div class="vendor-dot amber"></div> Cisco NX-OS</div>
+  <div class="vendor"><div class="vendor-dot amber"></div> Juniper JunOS</div>
+  <div class="vendor"><div class="vendor-dot amber"></div> SONiC</div>
+  <div class="vendor"><div class="vendor-dot blue"></div> Palo Alto PAN-OS</div>
+  <div class="vendor"><div class="vendor-dot blue"></div> Fortinet FortiOS</div>
 </div>
 
 <!-- Stats -->
 <div class="stats">
-  <div class="stat"><div class="stat-num">261</div><div class="stat-label">MCP Tools</div></div>
-  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Vendors</div></div>
-  <div class="stat"><div class="stat-num">8,422</div><div class="stat-label">Tests</div></div>
+  <div class="stat"><div class="stat-num">334</div><div class="stat-label">MCP Tools</div></div>
+  <div class="stat"><div class="stat-num">7</div><div class="stat-label">Vendors</div></div>
+  <div class="stat"><div class="stat-num">9</div><div class="stat-label">Integrations</div></div>
+  <div class="stat"><div class="stat-num">11,742</div><div class="stat-label">Tests</div></div>
   <div class="stat"><div class="stat-num">92%+</div><div class="stat-label">Coverage</div></div>
 </div>
 
 <!-- How it works -->
 <section class="section">
   <h2>How it works</h2>
-  <p>You ask a question. The AI picks the right tools, queries your devices, and explains what it found.</p>
+  <p>You ask a question. Your AI assistant picks the right tools, queries your devices, and explains what it found.</p>
 
   <div class="flow">
     <span class="highlight">You:</span> "Are any BGP neighbors down on spine-01?"<br>
     &nbsp;&nbsp;|<br>
-    <span class="highlight">AI Assistant</span> (Claude, Cursor, VS Code Copilot)<br>
+    <span class="highlight">AI Assistant</span> (Claude Desktop, Cursor, VS Code)<br>
     &nbsp;&nbsp;|&nbsp;&nbsp;selects: <span class="green">net_get_bgp_summary</span>(host="spine-01")<br>
     &nbsp;&nbsp;v<br>
-    <span class="highlight">Latticio</span> &rarr; eAPI / RESTCONF / NX-API / NETCONF<br>
-    &nbsp;&nbsp;|&nbsp;&nbsp;validates, rate-limits, audits, returns structured JSON<br>
+    <span class="highlight">latticio</span> &rarr; validates input, checks rate limits, selects driver<br>
+    &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr; queries device via eAPI / RESTCONF / NETCONF / REST<br>
+    &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr; sanitizes credentials, logs audit trail<br>
     &nbsp;&nbsp;v<br>
     <span class="highlight">AI:</span> "All 4 BGP neighbors on spine-01 are <span class="green">Established</span>.<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total prefixes received: 612."
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leaf-01 and leaf-02 (AS 65001): 24 prefixes each.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leaf-03 and leaf-04 (AS 65002): 20 prefixes each."
+  </div>
+</section>
+
+<!-- Tool categories -->
+<section class="section">
+  <h2>334 tools for everything you need</h2>
+  <p>From basic show commands to full fabric validation, config sessions, and compliance checking.</p>
+
+  <div class="tool-grid">
+    <div class="tool-cat"><div class="tool-cat-name">Device Info</div><div class="tool-cat-count">12 tools &mdash; version, model, inventory, health</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Interfaces</div><div class="tool-cat-count">13 tools &mdash; status, counters, errors, optics</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Routing</div><div class="tool-cat-count">21 tools &mdash; BGP, OSPF, routes, ARP/NDP</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Switching</div><div class="tool-cat-count">14 tools &mdash; MLAG, STP, MAC, LLDP, LAG</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">VLANs</div><div class="tool-cat-count">6 tools &mdash; list, create, delete, assign</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Config Mgmt</div><div class="tool-cat-count">10 tools &mdash; diffs, save, push, sessions</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Security</div><div class="tool-cat-count">15 tools &mdash; ACLs, AAA, CoPP, SNMP</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Monitoring</div><div class="tool-cat-count">8 tools &mdash; CPU, memory, temp, fans, NTP</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Troubleshooting</div><div class="tool-cat-count">10 tools &mdash; ping, trace, flaps, diagnosis</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Fabric Health</div><div class="tool-cat-count">6 tools &mdash; multi-device validation</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">EVPN/VXLAN</div><div class="tool-cat-count">9 tools &mdash; VTEPs, VNIs, EVPN routes</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Compliance</div><div class="tool-cat-count">5 tools &mdash; CIS benchmarks, ANTA</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">gNMI</div><div class="tool-cat-count">5 tools &mdash; streaming telemetry</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">AI/ML Fabric</div><div class="tool-cat-count">5 tools &mdash; RoCEv2, ECN, PFC, GPU paths</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Trending</div><div class="tool-cat-count">4 tools &mdash; historical metrics analysis</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Drift Detection</div><div class="tool-cat-count">3 tools &mdash; golden config comparison</div></div>
+  </div>
+</section>
+
+<!-- Vendor support -->
+<section class="section">
+  <h2>One interface, seven platforms</h2>
+  <p>All drivers implement the same protocol with 36 normalized getters. Write tools once, run them anywhere.</p>
+
+  <div class="vendor-table-wrap">
+    <table class="vendor-table">
+      <thead>
+        <tr><th>Vendor</th><th>Platform</th><th>Protocol</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Arista</td><td>EOS</td><td>eAPI (HTTPS)</td><td class="status-supported">Supported</td></tr>
+        <tr><td>Cisco</td><td>IOS-XE</td><td>RESTCONF</td><td class="status-preview">Preview</td></tr>
+        <tr><td>Cisco</td><td>NX-OS</td><td>NX-API</td><td class="status-preview">Preview</td></tr>
+        <tr><td>Juniper</td><td>JunOS</td><td>NETCONF</td><td class="status-preview">Preview</td></tr>
+        <tr><td>SONiC</td><td>SONiC</td><td>REST API</td><td class="status-preview">Preview</td></tr>
+        <tr><td>Palo Alto</td><td>PAN-OS</td><td>XML/REST API</td><td class="status-experimental">Experimental</td></tr>
+        <tr><td>Fortinet</td><td>FortiOS</td><td>REST API</td><td class="status-experimental">Experimental</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
 <!-- Features -->
 <section class="section">
-  <h2>Built for production</h2>
-  <p>Enterprise-grade safety, observability, and multi-tenancy from day one.</p>
+  <h2>Built for production networks</h2>
+  <p>Multiple safety layers active by default. Enterprise auth and RBAC for team deployments.</p>
 
   <div class="features">
     <div class="feature">
       <h3>Read-only by default</h3>
-      <p>All write operations are blocked unless you explicitly opt in. Dangerous commands like reload, write erase, and bash are permanently denied.</p>
+      <p>All write operations blocked unless explicitly enabled. Dangerous commands like reload, write erase, and bash are permanently denied.</p>
     </div>
     <div class="feature">
-      <h3>Multi-vendor normalization</h3>
-      <p>70 vendor-agnostic net_* tools return the same schema regardless of whether the device runs EOS, IOS-XE, NX-OS, or JunOS.</p>
+      <h3>Vendor-agnostic tools</h3>
+      <p>88 net_* tools return the same structured output regardless of vendor. Set the platform field in your inventory and every tool auto-selects the right driver.</p>
     </div>
     <div class="feature">
-      <h3>CLI injection prevention</h3>
-      <p>Every parameter is validated against injection patterns &mdash; semicolons, pipes, backticks, subshell syntax, null bytes &mdash; before reaching any device.</p>
+      <h3>Input validation</h3>
+      <p>Every parameter is validated against CLI injection patterns before reaching any device. Semicolons, pipes, backticks, subshell syntax, null bytes &mdash; all blocked.</p>
     </div>
     <div class="feature">
-      <h3>Config sessions &amp; rollback</h3>
-      <p>Stage changes in atomic config sessions. Review diffs before committing. Set rollback timers for automatic revert if anything goes wrong.</p>
+      <h3>Config sessions</h3>
+      <p>Stage changes in atomic config sessions. Review diffs before committing. Set rollback timers that automatically revert if something goes wrong.</p>
     </div>
     <div class="feature">
-      <h3>RBAC &amp; OAuth 2.1</h3>
-      <p>Scope-based access control with network:read, network:write, and network:admin. JWT/mTLS authentication for HTTP transport deployments.</p>
+      <h3>Auth &amp; RBAC</h3>
+      <p>OAuth 2.1 / JWT authentication with scope-based access control. Four scopes: network:read, network:write, network:admin, network:audit.</p>
     </div>
     <div class="feature">
-      <h3>Observability</h3>
-      <p>Full audit logging with tenant attribution, OpenTelemetry distributed tracing, Prometheus metrics export, and per-device circuit breakers.</p>
+      <h3>Audit &amp; observability</h3>
+      <p>Structured JSON audit log of every tool call with user and tenant attribution. Prometheus metrics export. Per-device circuit breakers and rate limiting.</p>
     </div>
+    <div class="feature">
+      <h3>Credential sanitization</h3>
+      <p>Passwords, secrets, community strings, and API keys are automatically redacted from every response before reaching the AI assistant.</p>
+    </div>
+    <div class="feature">
+      <h3>Progressive discovery</h3>
+      <p>Only meta-tools load at startup. Tool categories are loaded on demand as the AI needs them, keeping the context window efficient.</p>
+    </div>
+    <div class="feature">
+      <h3>Plugin system</h3>
+      <p>Extend with custom drivers, compliance packs, and tool modules via Python entry points. No core code changes needed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Integrations -->
+<section class="section">
+  <h2>Plugs into your existing workflow</h2>
+  <p>Inventory, secrets, incident management, metrics, and infrastructure-as-code.</p>
+
+  <div class="int-grid">
+    <div class="int-item"><div class="int-item-name">NetBox</div><div class="int-item-desc">Bidirectional DCIM sync, drift detection, cable audits</div></div>
+    <div class="int-item"><div class="int-item-name">Nautobot</div><div class="int-item-desc">Inventory source, device context enrichment</div></div>
+    <div class="int-item"><div class="int-item-name">ServiceNow</div><div class="int-item-desc">Incident creation, CMDB sync, change validation</div></div>
+    <div class="int-item"><div class="int-item-name">HashiCorp Vault</div><div class="int-item-desc">Credential retrieval with token, AppRole, and K8s auth</div></div>
+    <div class="int-item"><div class="int-item-name">Prometheus</div><div class="int-item-desc">Metrics export and Grafana dashboard generation</div></div>
+    <div class="int-item"><div class="int-item-name">Ansible</div><div class="int-item-desc">Playbook generation, inventory export</div></div>
+    <div class="int-item"><div class="int-item-name">Terraform</div><div class="int-item-desc">State parsing, infrastructure drift detection</div></div>
+    <div class="int-item"><div class="int-item-name">Containerlab</div><div class="int-item-desc">Lab topology discovery and lifecycle management</div></div>
+    <div class="int-item"><div class="int-item-name">Config Store</div><div class="int-item-desc">Git-backed config versioning with diff and history</div></div>
   </div>
 </section>
 
 <!-- Works with -->
 <section class="section">
   <h2>Works with any MCP client</h2>
-  <p>Connect Latticio to the AI tools you already use.</p>
+  <p>Connect latticio to the AI tools you already use.</p>
   <div class="clients">
     <div class="client">Claude Desktop</div>
     <div class="client">Claude Code</div>
@@ -507,10 +696,25 @@
   </div>
 </section>
 
+<!-- Deployment -->
+<section class="section">
+  <h2>Deploy anywhere</h2>
+  <p>From a local subprocess to a Kubernetes cluster with Helm, health checks, and horizontal scaling.</p>
+
+  <div class="tool-grid">
+    <div class="tool-cat"><div class="tool-cat-name">stdio</div><div class="tool-cat-count">Default &mdash; AI client launches it automatically</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">HTTP</div><div class="tool-cat-count">Team server with /health endpoint</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Docker</div><div class="tool-cat-count">Multi-stage build with health checks</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Docker Compose</div><div class="tool-cat-count">Production-ready with restart policies</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Kubernetes</div><div class="tool-cat-count">Manifests with Deployment, Service, Ingress</div></div>
+    <div class="tool-cat"><div class="tool-cat-name">Helm</div><div class="tool-cat-count">Chart with configurable values</div></div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta">
   <h2>Try it in 30 seconds</h2>
-  <p>Demo mode works with zero hardware. No devices, no lab, no configuration.</p>
+  <p>Demo mode simulates a 6-device spine-leaf fabric. No devices, no credentials, no configuration.</p>
 
   <div class="cta-install">
     <div class="label">Demo mode</div>
@@ -518,11 +722,11 @@
   </div>
 
   <div class="hero-buttons">
-    <a href="https://github.com/latticio/network-mcp" class="btn btn-primary">
+    <a href="https://github.com/latticio/network-mcp/blob/main/docs/GETTING_STARTED.md" class="btn btn-primary">Get Started</a>
+    <a href="https://github.com/latticio/network-mcp" class="btn btn-secondary">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       Star on GitHub
     </a>
-    <a href="https://discord.gg/TUBXHNnb" class="btn btn-secondary">Join Discord</a>
   </div>
 </section>
 
@@ -533,11 +737,10 @@
     <a href="https://github.com/latticio/network-mcp/blob/main/docs/TOOLS.md">Tool Reference</a>
     <a href="https://github.com/latticio/network-mcp/blob/main/docs/GETTING_STARTED.md">Getting Started</a>
     <a href="https://github.com/latticio/network-mcp/blob/main/docs/ARCHITECTURE.md">Architecture</a>
-    <a href="https://github.com/latticio/network-mcp/discussions">Discussions</a>
-    <a href="https://discord.gg/TUBXHNnb">Discord</a>
+    <a href="https://github.com/latticio/network-mcp/blob/main/docs/SECURITY.md">Security</a>
     <a href="https://pypi.org/project/latticio/">PyPI</a>
   </div>
-  <div class="footer-copy">Apache 2.0 &mdash; Latticio Labs</div>
+  <div class="footer-copy">Apache 2.0 &mdash; Latticio</div>
 </footer>
 
 <script>
